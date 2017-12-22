@@ -1,0 +1,14 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+        "textures": {
+            "all": "grandsorcery:blocks/earthen_stone"
+			
+        },
+        "model": "earthen_stone",
+        "uvlock": false
+    },
+	"variants": {
+		"normal": [{ "model": "grandsorcery:earthen_stone" }]
+	}
+}

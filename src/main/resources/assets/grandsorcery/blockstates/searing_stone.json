@@ -1,0 +1,14 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+        "textures": {
+            "all": "grandsorcery:blocks/searing_stone"
+			
+        },
+        "model": "searing_stone",
+        "uvlock": false
+    },
+	"variants": {
+		"normal": [{ "model": "grandsorcery:searing_stone" }]
+	}
+}

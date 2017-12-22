@@ -1,0 +1,14 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+        "textures": {
+            "all": "grandsorcery:blocks/magmatic_bricks"
+			
+        },
+        "model": "magmatic_bricks",
+        "uvlock": false
+    },
+	"variants": {
+		"normal": [{ "model": "grandsorcery:magmatic_bricks" }]
+	}
+}

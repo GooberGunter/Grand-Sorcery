@@ -1,0 +1,15 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+        "textures": {
+            "side": "grandsorcery:blocks/elimside",
+			"end": "grandsorcery:blocks/elimtop"
+			
+        },
+        "model": "elemental_imbuer",
+        "uvlock": false
+    },
+	"variants": {
+		"normal": [{ "model": "grandsorcery:elemental_imbuer" }]
+	}
+}

@@ -1,0 +1,14 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+        "textures": {
+            "all": "grandsorcery:blocks/aqua_stone"
+			
+        },
+        "model": "aqua_stone",
+        "uvlock": false
+    },
+	"variants": {
+		"normal": [{ "model": "grandsorcery:aqua_stone" }]
+	}
+}

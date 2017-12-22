@@ -1,0 +1,16 @@
+[
+{
+  "modid": "ds",
+  "name": "Divine Sorcery",
+  "description": "A mod based around sorcery featuring various methods of practicing the arcane arts, as well as several bosses and enemies.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["GooberGunter"],
+  "credits": "The Forge and FML guys, for providing the environment ;)",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
