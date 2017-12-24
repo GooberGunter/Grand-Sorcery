@@ -5,6 +5,7 @@ import com.GooberGunter.GrandSorcery.api.arcana.ArcanaProvider;
 import com.GooberGunter.GrandSorcery.api.arcana.IArcana;
 import com.GooberGunter.GrandSorcery.common.utils.Util;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -33,24 +34,24 @@ public class ItemArcanometer extends Item{
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
     {
-        //TODO sense the stuff
-			
-			//TODO find a way to convert single player to multiplayer
-			//GrandSorcery.handler.INSTANCE.sendTo(new ElementMessage(s), entityPlayerMP);
-			
-	
+        //TODO sense arcana
 		if(!worldIn.isRemote) {
 			Chunk chunk = worldIn.getChunkFromBlockCoords(playerIn.getPosition());
 			IArcana a = chunk.getCapability(ArcanaProvider.ARCANA_CAP, null);
 			int[] s = a.getArcana();
-			
 			int f = s[0];
 			int ai = s[1];
 			int ea = s[2];
 			int w = s[3];
 			int ar = s[4];
-			playerIn.sendMessage(new TextComponentTranslation("Fire: "+f+" Air: "+ai+" Earth: "+ea+" Water: "+w+" Arcana: "+ar));
-			Util.logger.info("Fire: "+f+" Air: "+ai+" Earth: "+ea+" Water: "+w+" Arcana: "+ar);
+			int life = s[5];
+			int death = s[6];
+			int light = s[7];
+			int shadow = s[8];
+			
+			
+			playerIn.sendMessage(new TextComponentTranslation("Fire: "+f+" Air: "+ai+" Earth: "+ea+" Water: "+w+" Arcana: "+ar+" Life: "+life+" Death: "+death+" Light: "+light+" Shadow: "+shadow));
+			//Util.logger.info("Fire: "+f+" Air: "+ai+" Earth: "+ea+" Water: "+w+" Arcana: "+ar);
 		}
 		return new ActionResult<ItemStack>(EnumActionResult.PASS, playerIn.getHeldItem(handIn));
     }

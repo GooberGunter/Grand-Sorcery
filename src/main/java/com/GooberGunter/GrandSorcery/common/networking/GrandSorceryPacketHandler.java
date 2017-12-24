@@ -1,7 +1,9 @@
 package com.GooberGunter.GrandSorcery.common.networking;
 
-import com.GooberGunter.GrandSorcery.GSReferences;
-import com.google.common.graph.Network;
+import com.GooberGunter.GrandSorcery.common.networking.handlers.ElementMessageHandler;
+import com.GooberGunter.GrandSorcery.common.networking.handlers.RequestHandler;
+import com.GooberGunter.GrandSorcery.common.networking.packets.ElementMessage;
+import com.GooberGunter.GrandSorcery.common.networking.packets.RequestMessage;
 
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
@@ -18,15 +20,15 @@ public class GrandSorceryPacketHandler {
 	
 	public static void registerMessage(String channelName) {
 		INSTANCE = NetworkRegistry.INSTANCE.newSimpleChannel(channelName);
-		
-		//server packets
-		
 		//client packets
-		INSTANCE.registerMessage(GSMessageHandler.class, ElementMessage.class, nextID(), Side.CLIENT);
-	}
+		INSTANCE.registerMessage(ElementMessageHandler.class, ElementMessage.class, nextID(), Side.CLIENT);
+			
+		//server packets
+		INSTANCE.registerMessage(RequestHandler.class, RequestMessage.class, nextID(), Side.SERVER);
+		}
 	
 	public static int nextID() {
-		return id++;
+		return ++id;
 	}
 	
 }

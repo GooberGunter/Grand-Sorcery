@@ -9,7 +9,7 @@ import com.GooberGunter.GrandSorcery.api.arcana.ArcanaStorage;
 import com.GooberGunter.GrandSorcery.api.arcana.IArcana;
 import com.GooberGunter.GrandSorcery.common.items.ItemArcanometer;
 import com.GooberGunter.GrandSorcery.common.items.ModItems;
-import com.GooberGunter.GrandSorcery.common.networking.ElementMessage;
+import com.GooberGunter.GrandSorcery.common.networking.packets.ElementMessage;
 import com.GooberGunter.GrandSorcery.common.utils.Util;
 
 import net.minecraft.client.Minecraft;
