@@ -4,8 +4,10 @@ import java.util.Random;
 
 import com.GooberGunter.GrandSorcery.GrandSorcery;
 import com.GooberGunter.GrandSorcery.api.arcana.Arcana;
+import com.GooberGunter.GrandSorcery.api.arcana.ArcanaGeneration;
 import com.GooberGunter.GrandSorcery.api.arcana.ArcanaProvider;
 import com.GooberGunter.GrandSorcery.api.arcana.ArcanaStorage;
+import com.GooberGunter.GrandSorcery.api.arcana.BiomeArcana;
 import com.GooberGunter.GrandSorcery.api.arcana.IArcana;
 import com.GooberGunter.GrandSorcery.common.items.ItemArcanometer;
 import com.GooberGunter.GrandSorcery.common.items.ModItems;
@@ -15,7 +17,9 @@ import com.GooberGunter.GrandSorcery.common.utils.Util;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.chunk.Chunk;
+import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.world.ChunkEvent;
 import net.minecraftforge.event.world.ChunkEvent.Load;
@@ -31,7 +35,31 @@ public class EventHandler {
 	
 	@SubscribeEvent
 	public static void onChunkLoad(Load e) {
+		if(!e.getWorld().isRemote) {
 			Chunk chunk = e.getChunk();
+			ArcanaGeneration gen = new ArcanaGeneration();
+			chunk.markDirty();
+			chunk.getCapability(ArcanaProvider.ARCANA_CAP, null);
+			IArcana arcana = chunk.getCapability(ArcanaProvider.ARCANA_CAP, null);
+			int[] elements = {0,0,0,0,0};
+			//load elements up
+			elements=BiomeArcana.getArcana(e.getChunk().getBiome(new BlockPos(chunk.x, gen.checkSurface(chunk, chunk.x, chunk.z), chunk.z), e.getWorld().getBiomeProvider()));
+			
+			
+			//finalize elements
+			elements[0]+=gen.addFire(chunk);
+			elements[1]+=gen.addAir(chunk);
+			elements[2]+=gen.addEarth(chunk);
+			elements[3]+=gen.addWater(chunk);
+			//avg
+			elements[4]= (int) Math.sqrt(elements[0]+elements[1]+elements[2]+elements[3]);
+			
+			//return it
+			arcana.set(elements);
+			if(chunk==DimensionManager.getWorld(0).getChunkFromChunkCoords(0, 0))
+				Util.logger.info("Elements: "+elements[0]+" "+elements[1]+" "+elements[2]+" "+elements[3]+" "+elements[4]);
+		}
+		/**Chunk chunk = e.getChunk();
 			chunk.markDirty();
 			chunk.getCapability(ArcanaProvider.ARCANA_CAP, null);
 			IArcana arcana = chunk.getCapability(ArcanaProvider.ARCANA_CAP, null);
@@ -57,7 +85,8 @@ public class EventHandler {
 					//Util.logger.info("assigned fire "+ arcana.getArcana());
 					//arcana.logElements();
 				}
-				//TODO figure out how to have them saved
+				**/
+	
 	}
 	
 	@SubscribeEvent

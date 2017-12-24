@@ -100,7 +100,7 @@ public class Arcana implements IArcana{
 
 	@Override
 	public int[] getArcana() {
-		int[] arcane = {this.fire, this.earth, this.air, this.water, this.arcana, this.life, this.death, this.light, this.shadow};
+		int[] arcane = {this.fire, this.air, this.earth, this.water, this.arcana, this.life, this.death, this.light, this.shadow};
 		return arcane;
 	}
 	
