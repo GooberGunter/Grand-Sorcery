@@ -25,6 +25,7 @@ public final class ModBlocks {
 	public static Block aquaBricks = new AquaBricks("aqua_bricks");
 	public static Block fireBricks = new MagmaticBricks("magmatic_bricks");
 	public static Block earthenBricks = new EarthenBricks("earthen_bricks");
+	public static Block crystal = new ArcaneCrystal("crystal");
 	
 	public static Block testBlock = new ArcanaConsumer("consumer");
 	public static ItemBlock tstb = new ItemBlock(testBlock);
@@ -38,13 +39,14 @@ public final class ModBlocks {
 	public static ItemBlock aquaBrItem = new ItemBlock(aquaBricks);
 	public static ItemBlock fireBrItem = new ItemBlock(fireBricks);
 	public static ItemBlock earthBrItem = new ItemBlock(earthenBricks);
+	public static ItemBlock crystalItem = new ItemBlock(crystal);
 	
 	@Mod.EventBusSubscriber
 	public static class BlockRegister{
 		
 		@SubscribeEvent
 		public static void registerBlock(RegistryEvent.Register<Block> e) {
-			e.getRegistry().registerAll(elementalImbuer, airStone, aquaStone, fireStone, earthStone, airBricks, aquaBricks, fireBricks, earthenBricks, testBlock);
+			e.getRegistry().registerAll(elementalImbuer, airStone, aquaStone, fireStone, earthStone, airBricks, aquaBricks, fireBricks, earthenBricks, testBlock, crystal);
 			elementalImbuerItem.setRegistryName(elementalImbuer.getRegistryName());
 			airStItem.setRegistryName(airStone.getRegistryName());
 			aquaStItem.setRegistryName(aquaStone.getRegistryName());
@@ -54,6 +56,7 @@ public final class ModBlocks {
 			aquaBrItem.setRegistryName(aquaBricks.getRegistryName());
 			fireBrItem.setRegistryName(fireBricks.getRegistryName());
 			earthBrItem.setRegistryName(earthenBricks.getRegistryName());
+			crystalItem.setRegistryName(crystal.getRegistryName());
 			
 			tstb.setRegistryName(testBlock.getRegistryName());
 			

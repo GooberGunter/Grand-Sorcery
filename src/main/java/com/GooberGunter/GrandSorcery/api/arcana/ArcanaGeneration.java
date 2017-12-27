@@ -22,7 +22,7 @@ public class ArcanaGeneration {
 			for(int z=0; z<16;z++) {
 				for(int y=checkSurface(chunk, x, z); y>0; y--) {
 					IBlockState block = chunk.getBlockState(x, y, z);
-					if(block == Blocks.LAVA) {
+					if(block.getBlock() == Blocks.LAVA) {
 						totFire+=15;
 					}//if there's lava, add 15
 				}//runs through y
@@ -49,6 +49,8 @@ public class ArcanaGeneration {
 		for(int i : ys) {
 			sum+=ys[i];
 		}
+		if(chunk == DimensionManager.getWorld(0).getChunkFromChunkCoords(0, 0))
+			Util.logger.info("air: "+(sum/ys.length));
 		return (sum/ys.length);
 	}
 	
@@ -63,13 +65,13 @@ public class ArcanaGeneration {
 			for(int z=0; z<16; z++) {
 				for(int y=checkSurface(chunk, x, z); y>0; y--) {
 					IBlockState block = chunk.getBlockState(x,y,z);
-					if(block == Blocks.DIRT)
+					if(block.getBlock() == Blocks.DIRT)
 						totEarth+=(1/16);
-					if(block == Blocks.SAND)
+					if(block.getBlock() == Blocks.SAND)
 						totEarth+=(1/16);
-					if(block == Blocks.STONE)
+					if(block.getBlock() == Blocks.STONE)
 						totEarth+=(1/32);
-					if(block == Blocks.SANDSTONE)
+					if(block.getBlock() == Blocks.SANDSTONE)
 						totEarth+=(1/48);
 					//Debug
 					//if(chunk==DimensionManager.getWorld(0).getChunkFromChunkCoords(0, 0))
@@ -92,7 +94,7 @@ public class ArcanaGeneration {
 			for(int z=0;z<16;z++) {
 				for(int y=checkSurface(chunk, x, z);y>0;y--) {
 					IBlockState block = chunk.getBlockState(x,y,z);
-					if(block == Blocks.WATER) {totWater+=3;}
+					if(block.getBlock() == Blocks.WATER) {totWater+=3;}
 				}
 			}
 		}
@@ -108,12 +110,12 @@ public class ArcanaGeneration {
 	 * @return
 	 */
 	public int checkSurface(Chunk chunk, int x, int z) {
-		int y;
+		int y=0;
 		for(y=255; y>0; y--) {
-			if(chunk.getBlockState(x, y, z) != Blocks.AIR) {
+			if(chunk.getBlockState(x,y,z).getBlock() != Blocks.AIR) {
 				return y;
 			}
 		}
-		return 0;
+		return y;
 	}
 }

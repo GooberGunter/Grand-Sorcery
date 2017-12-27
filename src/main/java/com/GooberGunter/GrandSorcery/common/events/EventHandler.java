@@ -39,23 +39,26 @@ public class EventHandler {
 			Chunk chunk = e.getChunk();
 			ArcanaGeneration gen = new ArcanaGeneration();
 			chunk.markDirty();
-			chunk.getCapability(ArcanaProvider.ARCANA_CAP, null);
+			chunk.getCapability(ArcanaProvider.ARCANA_CAP, null);//fetches the capability on load
 			IArcana arcana = chunk.getCapability(ArcanaProvider.ARCANA_CAP, null);
 			int[] elements = {0,0,0,0,0};
-			//load elements up
-			elements=BiomeArcana.getArcana(e.getChunk().getBiome(new BlockPos(chunk.x, gen.checkSurface(chunk, chunk.x, chunk.z), chunk.z), e.getWorld().getBiomeProvider()));
-			
-			
-			//finalize elements
-			elements[0]+=gen.addFire(chunk);
-			elements[1]+=gen.addAir(chunk);
-			elements[2]+=gen.addEarth(chunk);
-			elements[3]+=gen.addWater(chunk);
-			//avg
-			elements[4]= (int) Math.sqrt(elements[0]+elements[1]+elements[2]+elements[3]);
 			
 			//return it
-			arcana.set(elements);
+			if(arcana.getArcana()[0]==0 && arcana.getArcana()[1]==0 && arcana.getArcana()[2]==0 && arcana.getArcana()[3]==0 && arcana.getArcana()[4]==0) {
+				
+				//load elements up
+				elements=BiomeArcana.getArcana(e.getChunk().getBiome(new BlockPos(chunk.x, gen.checkSurface(chunk, chunk.x, chunk.z), chunk.z), e.getWorld().getBiomeProvider()));
+				
+				
+				//finalize elements
+				elements[0]+=gen.addFire(chunk);
+				elements[1]+=gen.addAir(chunk);
+				elements[2]+=gen.addEarth(chunk);
+				elements[3]+=gen.addWater(chunk);
+				//avg
+				elements[4]= (int) Math.sqrt(elements[0]+elements[1]+elements[2]+elements[3]);
+				arcana.set(elements);
+			}//if the chunk has no elements, it sets it
 			if(chunk==DimensionManager.getWorld(0).getChunkFromChunkCoords(0, 0))
 				Util.logger.info("Elements: "+elements[0]+" "+elements[1]+" "+elements[2]+" "+elements[3]+" "+elements[4]);
 		}

@@ -1,5 +1,6 @@
 package com.GooberGunter.GrandSorcery.common.proxy;
 
+import com.GooberGunter.GrandSorcery.GSReferences;
 import com.GooberGunter.GrandSorcery.common.block.ModBlocks;
 import com.GooberGunter.GrandSorcery.common.items.ModItems;
 import com.GooberGunter.GrandSorcery.common.utils.Util;
@@ -9,6 +10,8 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.client.model.b3d.B3DLoader;
+import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -64,6 +67,9 @@ public class ClientProxy extends CommonProxy{
 		for(Block block : blocks) {
 			ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), 0, new ModelResourceLocation(block.getRegistryName(), "inventory"));
 		}
+		B3DLoader.INSTANCE.addDomain(GSReferences.MODID);
+		OBJLoader.INSTANCE.addDomain(GSReferences.MODID);
+		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(ModBlocks.crystal), 0, new ModelResourceLocation(ModBlocks.crystal.getRegistryName(), "inventory"));
 	}
 	
 }
