@@ -1,0 +1,28 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " R ",
+        "#@#",
+        " L "
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:gold_ingot"
+        },
+		
+		"R": {
+			"item": "minecraft:redstone"
+		},
+		
+		"L": {
+			"item": "minecraft:dye 4 1"
+		},
+		
+		"@":{
+			"item": "grandsorcery:crystal"
+		}
+    },
+    "result": {
+        "item": "grandsorcery:arcane_focus"
+    }
+}

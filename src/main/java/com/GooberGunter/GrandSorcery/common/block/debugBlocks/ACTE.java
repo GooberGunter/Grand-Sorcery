@@ -18,9 +18,9 @@ public class ACTE extends TileEntity implements ITickable{
 		this.arc=new int[9];
 		for(int i=0;i<9;i++) {
 			this.arc[i]=0;
-			this.firstTick=DimensionManager.getWorld(0).getTotalWorldTime();
+			
 		}//sets local arc
-		
+		this.firstTick=DimensionManager.getWorld(0).getTotalWorldTime();
 	}
 	
 	@Override
