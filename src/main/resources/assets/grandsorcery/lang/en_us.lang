@@ -1,7 +1,8 @@
 item.grandsorcery.old_tome.name=Old Tome
 item.grandsorcery.arcanometer.name=Arcane Sensor
-item.grandsorcery.crystal_fragment=Crystal Fragment
-item.grandsorcery.arcane_focus=Arcane Focus
+item.grandsorcery.crystal_fragment.name=Crystal Fragment
+item.grandsorcery.arcane_focus.name=Arcane Focus
+item.grandsorcery.enchanted_ink.name=Enchanted Ink
 tile.grandsorcery.elemental_imbuer.name=Elemental Imbuer
 tile.grandsorcery.air_stone.name=Air Stone
 tile.grandsorcery.air_bricks.name=Air Bricks
@@ -12,4 +13,4 @@ tile.grandsorcery.earthen_bricks.name=Earthen Bricks
 tile.grandsorcery.searing_stone.name=Magmatic Stone
 tile.grandsorcery.magmatic_bricks.name=Magmatic Bricks
 tile.grandsorcery.crystal.name=Arcane Crystal
-itemGroup.grand_sorcery.name=Grand Sorcery
+itemGroup.grand_sorcery=Grand Sorcery

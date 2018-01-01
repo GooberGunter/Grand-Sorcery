@@ -23,7 +23,8 @@ public class ItemOldTome extends Item{
 		super();
 		this.setUnlocalizedName(GSReferences.MODID + "."+registryName);
 		this.setRegistryName(registryName);
-		
+		this.setCreativeTab(ModItems.tabGrandSor);
+		this.setMaxStackSize(1);
 	}
 	
 	@Override

@@ -10,6 +10,6 @@ public class ItemArcaneFocus extends Item{
 		super();
 		this.setRegistryName(regName);
 		this.setUnlocalizedName(GSReferences.MODID+"."+regName);
-
+		this.setCreativeTab(ModItems.tabGrandSor);
 	}
 }

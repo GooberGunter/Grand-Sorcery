@@ -1,0 +1,18 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+		{
+			"item": "minecraft:glass_bottle"
+		},
+		{
+			"item": "minecraft:dye",
+			"data": 0
+		},
+		{
+			"item": "grandsorcery:crystal_fragment"
+		}
+	],
+    "result": {
+        "item": "grandsorcery:enchanted_ink"
+    }
+}

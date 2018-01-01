@@ -26,13 +26,14 @@ public final class ModItems {
 	public static Item arcanometer = new ItemArcanometer("arcanometer");
 	public static Item crystalFrag = new ItemCrystalFragment("crystal_fragment");
 	public static Item arcaneFocus = new ItemArcaneFocus("arcane_focus");
+	public static Item enchantedInk = new ItemEnchantedInk("enchanted_ink");
 	
 	@Mod.EventBusSubscriber
 	public static class ItemRegister{
 		
 		@SubscribeEvent
 	    public static void registerItem(RegistryEvent.Register<Item> e) {
-	    	e.getRegistry().registerAll(oldTome, arcanometer, crystalFrag, arcaneFocus, ModBlocks.elementalImbuerItem, ModBlocks.airStItem, ModBlocks.aquaStItem, ModBlocks.fireStItem, ModBlocks.earthStItem, ModBlocks.airBrItem, ModBlocks.aquaBrItem, ModBlocks.fireBrItem, ModBlocks.earthBrItem, ModBlocks.tstb, ModBlocks.crystalItem);
+	    	e.getRegistry().registerAll(oldTome, arcanometer, crystalFrag, arcaneFocus, enchantedInk, ModBlocks.elementalImbuerItem, ModBlocks.airStItem, ModBlocks.aquaStItem, ModBlocks.fireStItem, ModBlocks.earthStItem, ModBlocks.airBrItem, ModBlocks.aquaBrItem, ModBlocks.fireBrItem, ModBlocks.earthBrItem, ModBlocks.tstb, ModBlocks.crystalItem);
 	    	Util.logger.info("ITEMS REGISTERED");
 	    }//subscribedevents MUST BE REGISTERED IN STATIC FIELDS
 	}

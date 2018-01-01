@@ -28,7 +28,8 @@ public class ItemArcanometer extends Item{
 		this.setRegistryName(registryName);
 		this.setUnlocalizedName(GSReferences.MODID+"."+registryName);
 		isheld=false;
-		
+		this.setCreativeTab(ModItems.tabGrandSor);
+		this.setMaxStackSize(1);
 	}
 	
 	@Override
@@ -60,6 +61,8 @@ public class ItemArcanometer extends Item{
 	public static void setElement(int[] val) {
 		element = val;
 	}
+	
+	
 	
 
 }

@@ -15,11 +15,12 @@
 		},
 		
 		"L": {
-			"item": "minecraft:dye 4 1"
+			"item": "minecraft:dye",
+			"data": 4
 		},
 		
 		"@":{
-			"item": "grandsorcery:crystal"
+			"item": "grandsorcery:crystal_fragment"
 		}
     },
     "result": {

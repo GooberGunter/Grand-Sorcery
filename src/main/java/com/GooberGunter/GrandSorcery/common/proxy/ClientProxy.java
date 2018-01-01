@@ -52,7 +52,7 @@ public class ClientProxy extends CommonProxy{
 	
 	@SubscribeEvent
 	public static void registerItemRender(ModelRegistryEvent e) {
-		Item[] items = {ModItems.oldTome, ModItems.arcanometer, ModItems.crystalFrag, ModItems.arcaneFocus, ModBlocks.airStItem, ModBlocks.aquaStItem, ModBlocks.earthStItem, ModBlocks.elementalImbuerItem, ModBlocks.fireStItem, ModBlocks.airBrItem, ModBlocks.aquaBrItem, ModBlocks.earthBrItem, ModBlocks.fireBrItem};
+		Item[] items = {ModItems.oldTome, ModItems.arcanometer, ModItems.crystalFrag, ModItems.arcaneFocus, ModItems.enchantedInk, ModBlocks.airStItem, ModBlocks.aquaStItem, ModBlocks.earthStItem, ModBlocks.elementalImbuerItem, ModBlocks.fireStItem, ModBlocks.airBrItem, ModBlocks.aquaBrItem, ModBlocks.earthBrItem, ModBlocks.fireBrItem};
 		
 		for(Item item : items) {
 			ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(item.getRegistryName(), "inventory"));

@@ -4,6 +4,7 @@ import com.GooberGunter.GrandSorcery.GSReferences;
 import com.GooberGunter.GrandSorcery.GrandSorcery;
 import com.GooberGunter.GrandSorcery.client.gui.GSGuiHandler;
 import com.GooberGunter.GrandSorcery.common.block.tileentities.ElementalImbuerTE;
+import com.GooberGunter.GrandSorcery.common.items.ModItems;
 import com.GooberGunter.GrandSorcery.common.utils.Util;
 
 import net.minecraft.block.Block;
@@ -29,7 +30,7 @@ public class ElementalImbuer extends Block{
 		this.setHardness(2.0f);
 		this.setResistance(6.0f);
 		this.setHarvestLevel("pickaxe", 2);
-		this.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
+		this.setCreativeTab(ModItems.tabGrandSor);
 	}
 	
 	@Override

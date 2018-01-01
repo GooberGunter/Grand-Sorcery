@@ -6,6 +6,12 @@
 	  "model": "grandsorcery:crystal.obj"
      },
 	 "variants": {
-		"normal": [{}]
+		"normal": [{}],
+		"facing=up": {"model": "grandsorcery:crystal.obj"},
+		"facing=down": {"model": "grandsorcery:crystal.obj", "x"=180},
+		"facing=north": {"model": "grandsorcery:crystal.obj", "x"=90},
+		"facing=south": {"model": "grandsorcery:crystal.obj", "x"=90, "y"=180},
+		"facing=east": {"model": "grandsorcery:crystal.obj", "x"=90, "y"=90},
+		"facing=west": {"model": "grandsorcery:crystal.obj", "x"=90, "y"=270}
 	 }
 }
