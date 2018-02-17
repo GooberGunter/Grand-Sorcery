@@ -6,31 +6,31 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 
-public class ArcanaProvider implements ICapabilitySerializable<NBTBase>{
+public class MagickaProvider implements ICapabilitySerializable<NBTBase>{
 
-	@CapabilityInject(IArcana.class)
-	public static final Capability<IArcana> ARCANA_CAP = null;
+	@CapabilityInject(IMagicka.class)
+	public static final Capability<IMagicka> MAG_CAP = null;
 	
-	private IArcana instance = ARCANA_CAP.getDefaultInstance();
+	private IMagicka instance = MAG_CAP.getDefaultInstance();
 	
 	@Override
 	public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
-		return capability == ARCANA_CAP;
+		return capability == MAG_CAP;
 	}
 
 	@Override
 	public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
-		return capability == ARCANA_CAP ? ARCANA_CAP.<T> cast(this.instance) : null;
+		return capability == MAG_CAP ? MAG_CAP.<T> cast(this.instance) : null;
 	}
 
 	@Override
 	public NBTBase serializeNBT() {
-		return ARCANA_CAP.getStorage().writeNBT(ARCANA_CAP, this.instance, null);
+		return MAG_CAP.getStorage().writeNBT(MAG_CAP, this.instance, null);
 	}
 
 	@Override
 	public void deserializeNBT(NBTBase nbt) {
-		ARCANA_CAP.getStorage().readNBT(ARCANA_CAP, this.instance, null, nbt);
+		MAG_CAP.getStorage().readNBT(MAG_CAP, this.instance, null, nbt);
 	}
 
 }

@@ -1,5 +1,6 @@
 package com.GooberGunter.GrandSorcery.common.proxy;
 
+
 import com.GooberGunter.GrandSorcery.GSReferences;
 import com.GooberGunter.GrandSorcery.common.block.ModBlocks;
 import com.GooberGunter.GrandSorcery.common.items.ModItems;
@@ -7,11 +8,13 @@ import com.GooberGunter.GrandSorcery.common.utils.Util;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.b3d.B3DLoader;
 import net.minecraftforge.client.model.obj.OBJLoader;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -27,6 +30,8 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 @EventBusSubscriber
 public class ClientProxy extends CommonProxy{
 	
+	public static KeyBinding[] keyBindings;
+	
 	public ClientProxy(){
 		
 	}
@@ -41,6 +46,12 @@ public class ClientProxy extends CommonProxy{
 	public void init(FMLInitializationEvent e) {
 		// TODO Auto-generated method stub
 		super.init(e);
+		
+		keyBindings = new KeyBinding[1];
+		keyBindings[0] = new KeyBinding("key.arcana.experiment", org.lwjgl.input.Keyboard.KEY_P, "key.grandsor.category");
+		for(int i=0; i<keyBindings.length;i++	) {
+			ClientRegistry.registerKeyBinding(keyBindings[i]);
+		}
 	}
 
 	@Override
@@ -52,7 +63,7 @@ public class ClientProxy extends CommonProxy{
 	
 	@SubscribeEvent
 	public static void registerItemRender(ModelRegistryEvent e) {
-		Item[] items = {ModItems.oldTome, ModItems.arcanometer, ModItems.crystalFrag, ModItems.arcaneFocus, ModItems.enchantedInk, ModBlocks.airStItem, ModBlocks.aquaStItem, ModBlocks.earthStItem, ModBlocks.elementalImbuerItem, ModBlocks.fireStItem, ModBlocks.airBrItem, ModBlocks.aquaBrItem, ModBlocks.earthBrItem, ModBlocks.fireBrItem};
+		Item[] items = {ModItems.oldTome, ModItems.arcanometer, ModItems.crystalFrag, ModItems.arcaneFocus, ModItems.enchantedInk, ModBlocks.airStItem, ModBlocks.aquaStItem, ModBlocks.earthStItem, ModBlocks.elementalImbuerItem, ModBlocks.fireStItem, ModBlocks.airBrItem, ModBlocks.aquaBrItem, ModBlocks.earthBrItem, ModBlocks.fireBrItem, ModBlocks.wkbnchItem};
 		
 		for(Item item : items) {
 			ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(item.getRegistryName(), "inventory"));
@@ -63,7 +74,7 @@ public class ClientProxy extends CommonProxy{
 	
 	@SubscribeEvent
 	public static void registerBlockRender(ModelRegistryEvent e) {
-		Block[] blocks = {ModBlocks.elementalImbuer, ModBlocks.airStone, ModBlocks.aquaStone, ModBlocks.earthStone, ModBlocks.fireStone, ModBlocks.airBricks, ModBlocks.aquaBricks, ModBlocks.earthenBricks, ModBlocks.fireBricks};
+		Block[] blocks = {ModBlocks.elementalImbuer, ModBlocks.airStone, ModBlocks.aquaStone, ModBlocks.earthStone, ModBlocks.fireStone, ModBlocks.airBricks, ModBlocks.aquaBricks, ModBlocks.earthenBricks, ModBlocks.fireBricks, ModBlocks.wkbnch};
 		for(Block block : blocks) {
 			ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), 0, new ModelResourceLocation(block.getRegistryName(), "inventory"));
 		}

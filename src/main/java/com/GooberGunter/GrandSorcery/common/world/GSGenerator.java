@@ -28,7 +28,7 @@ public class GSGenerator implements IWorldGenerator{
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
 		switch(world.provider.getDimension()) {
 		case 0:
-			this.run(crystalGen, random, chunkX, chunkZ, world, chunkGenerator, chunkProvider, 20, 10, 3);
+			this.run(crystalGen, random, chunkX, chunkZ, world, chunkGenerator, chunkProvider, 20, 10, 1);
 			break;
 		case 1:
 			break;
@@ -37,7 +37,7 @@ public class GSGenerator implements IWorldGenerator{
 		}
 		
 	}
-	
+	//TODO Rarify
 	public void run(WorldGenerator gen, Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider, int maxH, int minH, int spawnrate) {
 		if(minH < 0 || maxH > 256) {
 			Util.logger.info("ERROR: BAD RANGE");
@@ -49,7 +49,7 @@ public class GSGenerator implements IWorldGenerator{
 			int y = minH + random.nextInt(range);
 			int z = chunkZ*16 + random.nextInt(16);
 			gen.generate(world, random, new BlockPos(x,y,z));
-			Util.logger.info("Crystal at: " +new BlockPos(x,y,z));
+			//Util.logger.info("Crystal at: " +new BlockPos(x,y,z));
 		}
 		
 		

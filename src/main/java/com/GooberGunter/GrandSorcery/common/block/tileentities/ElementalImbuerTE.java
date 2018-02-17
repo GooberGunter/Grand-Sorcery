@@ -1,7 +1,7 @@
 package com.GooberGunter.GrandSorcery.common.block.tileentities;
 
-import com.GooberGunter.GrandSorcery.api.arcana.ArcanaProvider;
-import com.GooberGunter.GrandSorcery.api.arcana.IArcana;
+import com.GooberGunter.GrandSorcery.api.arcana.IMagicka;
+import com.GooberGunter.GrandSorcery.api.arcana.MagickaProvider;
 import com.GooberGunter.GrandSorcery.common.utils.Util;
 
 import net.minecraft.item.ItemStack;
@@ -18,19 +18,15 @@ import net.minecraftforge.items.ItemStackHandler;
 public class ElementalImbuerTE extends TileEntity implements ITickable{
 
 	private IItemHandler itemHandler;
-	private int[] arcanaval=new int[5];
+	private int mag;
 	
 	public ElementalImbuerTE() {
 		this.itemHandler = new ItemStackHandler();
-		this.getCapability(ArcanaProvider.ARCANA_CAP, null);
-		IArcana arcana = this.getCapability(ArcanaProvider.ARCANA_CAP, null);
+		this.getCapability(MagickaProvider.MAG_CAP, null);
+		IMagicka magicka = this.getCapability(MagickaProvider.MAG_CAP, null);
 		
-		this.arcanaval[0] = 0;
-		this.arcanaval[1] = 0;
-		this.arcanaval[2] = 0;
-		this.arcanaval[3] = 0;
-		this.arcanaval[4] = 0;
-		arcana.set(arcanaval);
+		this.mag=0;
+		magicka.set(mag);
 		
 	}
 	
@@ -41,7 +37,7 @@ public class ElementalImbuerTE extends TileEntity implements ITickable{
 	@Override
 	public void update() {
 		//add or take away depending on the recipe
-		this.getCapability(ArcanaProvider.ARCANA_CAP, null).set(arcanaval);
+		this.getCapability(MagickaProvider.MAG_CAP, null).set(mag);
 	}
 	
 	@Override
@@ -63,7 +59,6 @@ public class ElementalImbuerTE extends TileEntity implements ITickable{
 	
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
-		// TODO Auto-generated method stub
 		NBTTagList list = new NBTTagList();
 		for(int i=0; i < itemHandler.getSlots(); i++) {
 			NBTTagCompound nbt = new NBTTagCompound();

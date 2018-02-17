@@ -2,33 +2,36 @@ package com.GooberGunter.GrandSorcery.common.events;
 
 import java.util.Random;
 
-import com.GooberGunter.GrandSorcery.GrandSorcery;
-import com.GooberGunter.GrandSorcery.api.arcana.Arcana;
 import com.GooberGunter.GrandSorcery.api.arcana.ArcanaGeneration;
-import com.GooberGunter.GrandSorcery.api.arcana.ArcanaProvider;
-import com.GooberGunter.GrandSorcery.api.arcana.ArcanaStorage;
-import com.GooberGunter.GrandSorcery.api.arcana.BiomeArcana;
-import com.GooberGunter.GrandSorcery.api.arcana.IArcana;
-import com.GooberGunter.GrandSorcery.common.items.ItemArcanometer;
-import com.GooberGunter.GrandSorcery.common.items.ModItems;
-import com.GooberGunter.GrandSorcery.common.networking.packets.ElementMessage;
+import com.GooberGunter.GrandSorcery.api.arcana.ArcanaType;
+import com.GooberGunter.GrandSorcery.api.arcana.IArcanaProficiency;
+import com.GooberGunter.GrandSorcery.api.arcana.IMagicka;
+import com.GooberGunter.GrandSorcery.api.arcana.MagickaProvider;
+import com.GooberGunter.GrandSorcery.api.arcana.ProficiencyProvider;
+import com.GooberGunter.GrandSorcery.api.progress.IProgress;
+import com.GooberGunter.GrandSorcery.api.progress.ProgressProvider;
+import com.GooberGunter.GrandSorcery.client.gui.GuiSpellPractice;
+import com.GooberGunter.GrandSorcery.common.data.GrandSorProgressionTier;
+import com.GooberGunter.GrandSorcery.common.data.ProficiencyData;
+import com.GooberGunter.GrandSorcery.common.proxy.ClientProxy;
 import com.GooberGunter.GrandSorcery.common.utils.Util;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.client.settings.KeyBinding;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.common.DimensionManager;
-import net.minecraftforge.event.entity.player.PlayerEvent;
-import net.minecraftforge.event.world.ChunkEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent.Clone;
 import net.minecraftforge.event.world.ChunkEvent.Load;
-import net.minecraftforge.event.world.WorldEvent;
-import net.minecraftforge.event.world.WorldEvent.Unload;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
+import net.minecraftforge.fml.common.gameevent.InputEvent.KeyInputEvent;
+import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.WorldTickEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 @EventBusSubscriber
 public class EventHandler {
@@ -39,74 +42,106 @@ public class EventHandler {
 			Chunk chunk = e.getChunk();
 			ArcanaGeneration gen = new ArcanaGeneration();
 			chunk.markDirty();
-			chunk.getCapability(ArcanaProvider.ARCANA_CAP, null);//fetches the capability on load
-			IArcana arcana = chunk.getCapability(ArcanaProvider.ARCANA_CAP, null);
-			int[] elements = {0,0,0,0,0};
-			
+			chunk.getCapability(MagickaProvider.MAG_CAP, null);//fetches the capability on load
+			IMagicka magicka = chunk.getCapability(MagickaProvider.MAG_CAP, null);
+			Random r = new Random();
 			//return it
-			if(arcana.getArcana()[0]==0 && arcana.getArcana()[1]==0 && arcana.getArcana()[2]==0 && arcana.getArcana()[3]==0 && arcana.getArcana()[4]==0) {
+			if(magicka.getMagicka() == 0) {
 				
-				//load elements up
-				elements=BiomeArcana.getArcana(e.getChunk().getBiome(new BlockPos(chunk.x, gen.checkSurface(chunk, chunk.x, chunk.z), chunk.z), e.getWorld().getBiomeProvider()));
-				
-				
-				//finalize elements
-				elements[0]+=gen.addFire(chunk);
-				elements[1]+=gen.addAir(chunk);
-				elements[2]+=gen.addEarth(chunk);
-				elements[3]+=gen.addWater(chunk);
-				//avg
-				elements[4]= (int) Math.sqrt(elements[0]+elements[1]+elements[2]+elements[3]);
-				arcana.set(elements);
+				magicka.set(r.nextInt(500)+1);
 			}//if the chunk has no elements, it sets it
-			if(chunk==DimensionManager.getWorld(0).getChunkFromChunkCoords(0, 0))
-				Util.logger.info("Elements: "+elements[0]+" "+elements[1]+" "+elements[2]+" "+elements[3]+" "+elements[4]);
 		}
-		/**Chunk chunk = e.getChunk();
-			chunk.markDirty();
-			chunk.getCapability(ArcanaProvider.ARCANA_CAP, null);
-			IArcana arcana = chunk.getCapability(ArcanaProvider.ARCANA_CAP, null);
-				int[] none = {0,0,0,0,0};
-				int[] test = arcana.getArcana();
-				int f=test[0];
-				int a=test[1];
-				int ea=test[2];
-				int w=test[3];
-				int ar=test[4];
-				
-				//Util.logger.info("FOUND "+f+" "+a+" "+ea+" "+w+" "+ar);
-				
-				if (test[0]==0 && test[1]==0 && test[2]==0 && test[3]==0 && test[4]==0){
-					Random r = new Random();
-					int f1=r.nextInt(20);
-					int a1=r.nextInt(20);
-					int ea1=r.nextInt(20);
-					int w1=r.nextInt(20);
-					//Util.logger.info("REASSIGNING");
-					int[] elements = {f1,a1,ea1,w1,(int) Math.sqrt(f1+a1+ea1+w1)};
-					arcana.set(elements);
-					//Util.logger.info("assigned fire "+ arcana.getArcana());
-					//arcana.logElements();
-				}
-				**/
-	
 	}
 	
 	@SubscribeEvent
-	public static void onWorldTick(PlayerTickEvent e) {
-		Chunk chunk = new Chunk(e.player.getEntityWorld(), e.player.chunkCoordX, e.player.chunkCoordZ);
-		chunk.getCapability(ArcanaProvider.ARCANA_CAP, null);
-		IArcana arcana = chunk.getCapability(ArcanaProvider.ARCANA_CAP, null);
-		int[] maxboi = arcana.getMax();
-		int[] currentboi = arcana.getArcana();
-		int[] newboi = {0,0,0,0,0};
-		for(int i : arcana.getArcana()) {
-			if(currentboi[i] < maxboi[i]) {
-				//then regenerate
-				newboi[i]=5*(1-(currentboi[i]/maxboi[i]));
+	public static void onPlayerLog(PlayerLoggedInEvent e) {
+		Util.logger.info("TEST?");
+		EntityPlayer p = e.player;
+		IArcanaProficiency profs = p.getCapability(ProficiencyProvider.PROFICIENCY_CAP, null);
+		if(FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER) {
+			if(profs.getProficiency()[0] == null || profs.getProficiency()[1] == null) {
+				Util.logger.info("ITs on the server");			
+			
+				//SET PRIMARY AND SECONDARY
+				int t1=ProficiencyData.getPrimaryInt();
+				int t2=ProficiencyData.getSecondaryInt(t1);
+				profs.setProficiency(ArcanaType.getTypebyId(t1), ArcanaType.getTypebyId(t2));
 			}
 		}
-		arcana.generate(newboi);
+		if(FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER && p.getCapability(ProgressProvider.PROGRESS_CAP, null).getProgress() == null) {
+			p.getCapability(ProgressProvider.PROGRESS_CAP, null).setProgress(GrandSorProgressionTier.DISCOVERER);
+			
+		}
+		Util.logger.info("Progress: "+p.getCapability(ProgressProvider.PROGRESS_CAP, null).getProgress());
+		Util.logger.info("Proficiencies: "+p.getCapability(ProficiencyProvider.PROFICIENCY_CAP, null).getProficiency()[0]+" "+p.getCapability(ProficiencyProvider.PROFICIENCY_CAP, null).getProficiency()[1]);
+		
+	}
+	
+	@SubscribeEvent
+	public static void reattach(Clone e) {
+		EntityPlayer p = e.getEntityPlayer();
+		IProgress newprog = p.getCapability(ProgressProvider.PROGRESS_CAP, null);
+		IProgress oldprog = e.getOriginal().getCapability(ProgressProvider.PROGRESS_CAP, null);
+		newprog.setProgress(oldprog.getProgress());
+		
+		IArcanaProficiency profs = p.getCapability(ProficiencyProvider.PROFICIENCY_CAP, null);
+		
+		if(FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER) {
+			if(profs.getProficiency()[0] == null || profs.getProficiency()[1] == null) {
+				Util.logger.info("ITs on the server");			
+			
+				//SET PRIMARY AND SECONDARY
+				int t1=ProficiencyData.getPrimaryInt();
+				int t2=ProficiencyData.getSecondaryInt(t1);
+				profs.setProficiency(ArcanaType.getTypebyId(t1), ArcanaType.getTypebyId(t2));
+			}
+		}
+		Util.logger.info("Progress: "+p.getCapability(ProgressProvider.PROGRESS_CAP, null).getProgress());
+		Util.logger.info("Proficiencies: "+p.getCapability(ProficiencyProvider.PROFICIENCY_CAP, null).getProficiency()[0]+" "+p.getCapability(ProficiencyProvider.PROFICIENCY_CAP, null).getProficiency()[1]);
+		
+	}
+	
+	@SubscribeEvent
+	public static void onWorldTick(WorldTickEvent e) {
+		//Util.logger.info("tick");
+		if(!e.world.isRemote && e.world.getWorldTime()%90==0) {
+			//Util.logger.info("server");
+			for(int w=0;w<DimensionManager.getWorlds().length;w++) {
+				if(DimensionManager.getWorld(w) != null && DimensionManager.getWorld(w).getChunkProvider() != null && DimensionManager.getWorld(w).getChunkProvider().getLoadedChunkCount() >0) {
+					for(Chunk chunk : DimensionManager.getWorld(w).getChunkProvider().getLoadedChunks()) {
+						//Util.logger.info("Looking through chunks");
+						IMagicka magicka = chunk.getCapability(MagickaProvider.MAG_CAP, null);
+						int nm = 0;
+						if(magicka.getMagicka() < magicka.getMax()) {
+							nm=(int) Math.sqrt(magicka.getMagicka()*magicka.getMagicka());
+							if(DimensionManager.getWorld(w).getWorldTime()%nm==0) {
+								magicka.generate(1);
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 
+	@SideOnly(Side.CLIENT)
+	@SubscribeEvent
+	public static void onPressed(KeyInputEvent e) {
+		Util.logger.info("pressed");
+		KeyBinding[] keys = ClientProxy.keyBindings;
+		if(keys[0].isPressed()){
+			Minecraft.getMinecraft().player.getCapability(MagickaProvider.MAG_CAP, null).generate(1);
+			Util.logger.info("Magika: ");
+		}
+	}
+	
+	@SubscribeEvent
+	public static void onHurt(LivingHurtEvent e) {
+		if(e.getEntity() instanceof EntityPlayer) {
+			Random r = new Random();
+			if(r.nextInt(100)<13) {
+				
+			}
+		}
+	}
 }

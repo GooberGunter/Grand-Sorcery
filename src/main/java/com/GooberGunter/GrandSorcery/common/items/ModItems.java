@@ -33,7 +33,7 @@ public final class ModItems {
 		
 		@SubscribeEvent
 	    public static void registerItem(RegistryEvent.Register<Item> e) {
-	    	e.getRegistry().registerAll(oldTome, arcanometer, crystalFrag, arcaneFocus, enchantedInk, ModBlocks.elementalImbuerItem, ModBlocks.airStItem, ModBlocks.aquaStItem, ModBlocks.fireStItem, ModBlocks.earthStItem, ModBlocks.airBrItem, ModBlocks.aquaBrItem, ModBlocks.fireBrItem, ModBlocks.earthBrItem, ModBlocks.tstb, ModBlocks.crystalItem);
+	    	e.getRegistry().registerAll(oldTome, arcanometer, crystalFrag, arcaneFocus, enchantedInk, ModBlocks.elementalImbuerItem, ModBlocks.airStItem, ModBlocks.aquaStItem, ModBlocks.fireStItem, ModBlocks.earthStItem, ModBlocks.airBrItem, ModBlocks.aquaBrItem, ModBlocks.fireBrItem, ModBlocks.earthBrItem, ModBlocks.tstb, ModBlocks.crystalItem, ModBlocks.wkbnchItem);
 	    	Util.logger.info("ITEMS REGISTERED");
 	    }//subscribedevents MUST BE REGISTERED IN STATIC FIELDS
 	}

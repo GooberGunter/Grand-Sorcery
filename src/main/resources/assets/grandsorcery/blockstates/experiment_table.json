@@ -1,0 +1,15 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+      "transform": "forge:default-block",
+	  "custom": {"flip-v": true},
+	  "model": "grandsorcery:experiment_table"
+     },
+	 "variants": {
+		"normal": [{}],
+		"facing=north": {"model": "grandsorcery:experiment_table"},
+		"facing=south": {"model": "grandsorcery:experiment_table", "y"=180},
+		"facing=east": {"model": "grandsorcery:experiment_table", "y"=90},
+		"facing=west": {"model": "grandsorcery:experiment_table", "y"=270}
+	 }
+}

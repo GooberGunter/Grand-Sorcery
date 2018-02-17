@@ -3,6 +3,8 @@ package com.GooberGunter.GrandSorcery.common.block;
 import com.GooberGunter.GrandSorcery.common.block.debugBlocks.ACTE;
 import com.GooberGunter.GrandSorcery.common.block.debugBlocks.ArcanaConsumer;
 import com.GooberGunter.GrandSorcery.common.block.tileentities.ElementalImbuerTE;
+import com.GooberGunter.GrandSorcery.common.block.tileentities.ExperimentTableTE;
+import com.GooberGunter.GrandSorcery.common.block.tileentities.TEBase;
 import com.GooberGunter.GrandSorcery.common.utils.Util;
 
 import net.minecraft.block.Block;
@@ -26,6 +28,7 @@ public final class ModBlocks {
 	public static Block fireBricks = new MagmaticBricks("magmatic_bricks");
 	public static Block earthenBricks = new EarthenBricks("earthen_bricks");
 	public static Block crystal = new ArcaneCrystal("crystal");
+	public static Block wkbnch = new ExperimentTable("experiment_table");
 	
 	public static Block testBlock = new ArcanaConsumer("consumer");
 	public static ItemBlock tstb = new ItemBlock(testBlock);
@@ -40,13 +43,14 @@ public final class ModBlocks {
 	public static ItemBlock fireBrItem = new ItemBlock(fireBricks);
 	public static ItemBlock earthBrItem = new ItemBlock(earthenBricks);
 	public static ItemBlock crystalItem = new ItemBlock(crystal);
+	public static ItemBlock wkbnchItem = new ItemBlock(wkbnch);
 	
 	@Mod.EventBusSubscriber
 	public static class BlockRegister{
 		
 		@SubscribeEvent
 		public static void registerBlock(RegistryEvent.Register<Block> e) {
-			e.getRegistry().registerAll(elementalImbuer, airStone, aquaStone, fireStone, earthStone, airBricks, aquaBricks, fireBricks, earthenBricks, testBlock, crystal);
+			e.getRegistry().registerAll(elementalImbuer, airStone, aquaStone, fireStone, earthStone, airBricks, aquaBricks, fireBricks, earthenBricks, testBlock, crystal, wkbnch);
 			elementalImbuerItem.setRegistryName(elementalImbuer.getRegistryName());
 			airStItem.setRegistryName(airStone.getRegistryName());
 			aquaStItem.setRegistryName(aquaStone.getRegistryName());
@@ -57,11 +61,14 @@ public final class ModBlocks {
 			fireBrItem.setRegistryName(fireBricks.getRegistryName());
 			earthBrItem.setRegistryName(earthenBricks.getRegistryName());
 			crystalItem.setRegistryName(crystal.getRegistryName());
+			wkbnchItem.setRegistryName(wkbnch.getRegistryName());
 			
 			tstb.setRegistryName(testBlock.getRegistryName());
 			
 			GameRegistry.registerTileEntity(ElementalImbuerTE.class, "elemental_enchanter_te");
 			GameRegistry.registerTileEntity(ACTE.class, "consumer_te");
+			GameRegistry.registerTileEntity(TEBase.class, "base");
+			GameRegistry.registerTileEntity(ExperimentTableTE.class, "equalizer_te");
 			Util.logger.info("BLOCKS REGISTERED");
 		}
 	}
