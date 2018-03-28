@@ -4,7 +4,6 @@ package com.GooberGunter.GrandSorcery.api.arcana;
  */
 
 import com.GooberGunter.GrandSorcery.GSReferences;
-import com.GooberGunter.GrandSorcery.api.progress.ProgressProvider;
 import com.GooberGunter.GrandSorcery.common.utils.Util;
 
 import net.minecraft.entity.Entity;
@@ -42,7 +41,6 @@ public class CapabilityHandler {
 		if(ev.getObject() instanceof EntityPlayer && FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER) {
 			ev.addCapability(ARCANA_CAP, new MagickaProvider());
 			ev.addCapability(PROFICIENCY_CAP, new ProficiencyProvider());
-			ev.addCapability(PROGRESSION_CAP, new ProgressProvider());
 			Util.logger.info("player found");
 		}
 	}

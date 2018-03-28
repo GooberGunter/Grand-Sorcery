@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.GooberGunter.GrandSorcery.GSReferences;
-import com.GooberGunter.GrandSorcery.api.arcana.ArcanaType;
+import com.GooberGunter.GrandSorcery.api.arcana.MagickaType;
 import com.GooberGunter.GrandSorcery.client.resources.GrandResource;
 import com.GooberGunter.GrandSorcery.common.data.ResearchData;
 import com.GooberGunter.GrandSorcery.common.data.ResearchData.ResearchTier;
@@ -33,7 +33,7 @@ public class TomeGui extends GuiScreen{
 	int yold;
 	int releaseX;
 	int releaseY;
-	ResearchNode node = new ResearchNode((this.width/2)+this.mapx-8, (this.height/2)+this.mapy-8, RsPages.bookPage, new ResearchData(ResearchTier.DISCOVERY, ArcanaType.AIR), GrandResource.BOOK);
+	ResearchNode node = new ResearchNode((this.width/2)+this.mapx-8, (this.height/2)+this.mapy-8, RsPages.bookPage, new ResearchData(ResearchTier.DISCOVERY, MagickaType.AIR), GrandResource.BOOK);
 	boolean mainMenu;
 	ArrayList<ResearchNode> nodes = new ArrayList<ResearchNode>();
 	

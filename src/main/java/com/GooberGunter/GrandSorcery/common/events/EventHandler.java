@@ -3,14 +3,11 @@ package com.GooberGunter.GrandSorcery.common.events;
 import java.util.Random;
 
 import com.GooberGunter.GrandSorcery.api.arcana.ArcanaGeneration;
-import com.GooberGunter.GrandSorcery.api.arcana.ArcanaType;
+import com.GooberGunter.GrandSorcery.api.arcana.MagickaType;
 import com.GooberGunter.GrandSorcery.api.arcana.IArcanaProficiency;
 import com.GooberGunter.GrandSorcery.api.arcana.IMagicka;
 import com.GooberGunter.GrandSorcery.api.arcana.MagickaProvider;
 import com.GooberGunter.GrandSorcery.api.arcana.ProficiencyProvider;
-import com.GooberGunter.GrandSorcery.api.progress.IProgress;
-import com.GooberGunter.GrandSorcery.api.progress.ProgressProvider;
-import com.GooberGunter.GrandSorcery.client.gui.GuiSpellPractice;
 import com.GooberGunter.GrandSorcery.common.data.GrandSorProgressionTier;
 import com.GooberGunter.GrandSorcery.common.data.ProficiencyData;
 import com.GooberGunter.GrandSorcery.common.proxy.ClientProxy;
@@ -65,14 +62,9 @@ public class EventHandler {
 				//SET PRIMARY AND SECONDARY
 				int t1=ProficiencyData.getPrimaryInt();
 				int t2=ProficiencyData.getSecondaryInt(t1);
-				profs.setProficiency(ArcanaType.getTypebyId(t1), ArcanaType.getTypebyId(t2));
+				profs.setProficiency(MagickaType.getTypebyId(t1), MagickaType.getTypebyId(t2));
 			}
 		}
-		if(FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER && p.getCapability(ProgressProvider.PROGRESS_CAP, null).getProgress() == null) {
-			p.getCapability(ProgressProvider.PROGRESS_CAP, null).setProgress(GrandSorProgressionTier.DISCOVERER);
-			
-		}
-		Util.logger.info("Progress: "+p.getCapability(ProgressProvider.PROGRESS_CAP, null).getProgress());
 		Util.logger.info("Proficiencies: "+p.getCapability(ProficiencyProvider.PROFICIENCY_CAP, null).getProficiency()[0]+" "+p.getCapability(ProficiencyProvider.PROFICIENCY_CAP, null).getProficiency()[1]);
 		
 	}
@@ -80,9 +72,6 @@ public class EventHandler {
 	@SubscribeEvent
 	public static void reattach(Clone e) {
 		EntityPlayer p = e.getEntityPlayer();
-		IProgress newprog = p.getCapability(ProgressProvider.PROGRESS_CAP, null);
-		IProgress oldprog = e.getOriginal().getCapability(ProgressProvider.PROGRESS_CAP, null);
-		newprog.setProgress(oldprog.getProgress());
 		
 		IArcanaProficiency profs = p.getCapability(ProficiencyProvider.PROFICIENCY_CAP, null);
 		
@@ -93,10 +82,9 @@ public class EventHandler {
 				//SET PRIMARY AND SECONDARY
 				int t1=ProficiencyData.getPrimaryInt();
 				int t2=ProficiencyData.getSecondaryInt(t1);
-				profs.setProficiency(ArcanaType.getTypebyId(t1), ArcanaType.getTypebyId(t2));
+				profs.setProficiency(MagickaType.getTypebyId(t1), MagickaType.getTypebyId(t2));
 			}
 		}
-		Util.logger.info("Progress: "+p.getCapability(ProgressProvider.PROGRESS_CAP, null).getProgress());
 		Util.logger.info("Proficiencies: "+p.getCapability(ProficiencyProvider.PROFICIENCY_CAP, null).getProficiency()[0]+" "+p.getCapability(ProficiencyProvider.PROFICIENCY_CAP, null).getProficiency()[1]);
 		
 	}

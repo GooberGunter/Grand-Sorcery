@@ -3,7 +3,7 @@ package com.GooberGunter.GrandSorcery.common.data;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-import com.GooberGunter.GrandSorcery.api.arcana.ArcanaType;
+import com.GooberGunter.GrandSorcery.api.arcana.MagickaType;
 
 /**
  * CLASS PURPOSE: assigns a tier and list of elements to different research
@@ -14,16 +14,16 @@ import com.GooberGunter.GrandSorcery.api.arcana.ArcanaType;
 public class ResearchData {
 	//what data do we want
 	private ResearchTier tier;
-	private ArrayList<ArcanaType> types = new ArrayList<>();
+	private ArrayList<MagickaType> types = new ArrayList<>();
 	
-	public ResearchData(ResearchTier tier, ArcanaType... type) {
+	public ResearchData(ResearchTier tier, MagickaType... type) {
 		this.tier=tier;
-		for(ArcanaType a : type) {
+		for(MagickaType a : type) {
 			types.add(a);
 		}
 	}
 	
-	public ArrayList<ArcanaType> getArcana() {
+	public ArrayList<MagickaType> getArcana() {
 		return this.types;
 	}
 	

@@ -1,7 +1,7 @@
 package com.GooberGunter.GrandSorcery.common.block.debugBlocks;
 
 import com.GooberGunter.GrandSorcery.api.arcana.MagickaProvider;
-import com.GooberGunter.GrandSorcery.api.arcana.ArcanaType;
+import com.GooberGunter.GrandSorcery.api.arcana.MagickaType;
 import com.GooberGunter.GrandSorcery.common.utils.Util;
 
 import net.minecraft.client.Minecraft;

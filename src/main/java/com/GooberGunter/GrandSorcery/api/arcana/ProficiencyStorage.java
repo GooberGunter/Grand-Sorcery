@@ -45,8 +45,8 @@ public class ProficiencyStorage implements IStorage<IArcanaProficiency>{
 		ArcanaType test2 = ArcanaType.valueOf(nbt2.getString("sec"));*/
 		NBTTagCompound compound = new NBTTagCompound();
 		if(instance.getProficiency()[0] != null) {
-			ArcanaType type1 = ArcanaType.getTypebyId(compound.getInteger("prim:"));
-			ArcanaType type2 = ArcanaType.getTypebyId(compound.getInteger("sec"));
+			MagickaType type1 = MagickaType.getTypebyId(compound.getInteger("prim:"));
+			MagickaType type2 = MagickaType.getTypebyId(compound.getInteger("sec"));
 			instance.setProficiency(type1, type2);
 		}
 		

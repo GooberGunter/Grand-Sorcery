@@ -4,7 +4,7 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 
-import com.GooberGunter.GrandSorcery.api.arcana.ArcanaType;
+import com.GooberGunter.GrandSorcery.api.arcana.MagickaType;
 import com.GooberGunter.GrandSorcery.client.resources.GrandResource;
 import com.GooberGunter.GrandSorcery.common.data.ResearchData;
 import com.GooberGunter.GrandSorcery.common.data.ResearchData.ResearchTier;
@@ -99,11 +99,11 @@ public class GuiTomeDiscovery extends GuiTomeGeneral{
 		public static  ArrayList<ResearchNode> nodez;
 	
 		public static void init(int x, int y) {
-			RsBook = new ResearchNode(x,y, RsPages.bookPage, new ResearchData(ResearchTier.DISCOVERY, ArcanaType.ARCANA), GrandResource.BOOK_ICON);
-			RsOres = new ResearchNode(x-32, y, RsPages.oresPage, new ResearchData(ResearchTier.DISCOVERY, ArcanaType.ARCANA), GrandResource.STAND_IN_ICON);
-			RsDungeons = new ResearchNode(x-32, y-32, RsPages.dungeonPage, new ResearchData(ResearchTier.DISCOVERY, ArcanaType.ARCANA),GrandResource.STAND_IN_ICON);
-			RsShrines = new ResearchNode(x-32, y-64, RsPages.shrinePage, new ResearchData(ResearchTier.DISCOVERY, ArcanaType.ARCANA), GrandResource.STAND_IN_ICON);
-			RsElementals = new ResearchNode(x-64, y-32, RsPages.elementalPage, new ResearchData(ResearchTier.DISCOVERY, ArcanaType.ARCANA), GrandResource.STAND_IN_ICON);
+			RsBook = new ResearchNode(x,y, RsPages.bookPage, new ResearchData(ResearchTier.DISCOVERY, MagickaType.ARCANA), GrandResource.BOOK_ICON);
+			RsOres = new ResearchNode(x-32, y, RsPages.oresPage, new ResearchData(ResearchTier.DISCOVERY, MagickaType.ARCANA), GrandResource.STAND_IN_ICON);
+			RsDungeons = new ResearchNode(x-32, y-32, RsPages.dungeonPage, new ResearchData(ResearchTier.DISCOVERY, MagickaType.ARCANA),GrandResource.STAND_IN_ICON);
+			RsShrines = new ResearchNode(x-32, y-64, RsPages.shrinePage, new ResearchData(ResearchTier.DISCOVERY, MagickaType.ARCANA), GrandResource.STAND_IN_ICON);
+			RsElementals = new ResearchNode(x-64, y-32, RsPages.elementalPage, new ResearchData(ResearchTier.DISCOVERY, MagickaType.ARCANA), GrandResource.STAND_IN_ICON);
 			nodez = new ArrayList<>();
 			for(ResearchNode n : new ResearchNode[] {RsBook, RsOres, RsDungeons, RsShrines, RsElementals}) {
 				nodez.add(n);
